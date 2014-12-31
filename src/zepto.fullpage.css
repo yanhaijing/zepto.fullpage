@@ -1,0 +1,14 @@
+.fullPage-wp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;        
+}
+.fullPage-wp.anim{
+    -webkit-transition: all 500ms 0 ease;
+    transition: all 500ms 0 ease; 
+}
+.fullPage-page{
+    display: block;
+    overflow: hidden;
+}
