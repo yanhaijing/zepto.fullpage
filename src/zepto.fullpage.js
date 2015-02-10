@@ -1,89 +1,154 @@
-(function ($) {
+(function ($, window, undefined) {
     if (typeof $ === 'undefined') {
-        throw new Error('zepto.fullpage.js\'s script requires Zepto');
+        throw new Error('zepto.fullpage\'s script requires Zepto');
+    }
+    var fullpage = null;
+    var d = {
+        page: '.page',
+        start: 0,
+        duration: 500,
+        drag: false,
+        change: function () {},
+        beforeChange: function () {},
+        afterChange: function () {},
+        orientationchange: function () {}
+    };
+    function fix(cur, pagesLength) {
+        if (cur < 0) {
+            return 0;
+        }
+
+        if (cur >= pagesLength) {
+            return pagesLength - 1;
+        }
+
+        return cur;
+    }
+    function init (option) {
+        var o = $.extend(true, {}, d, option);
+        var that = this;
+        that.curIndex = o.start;
+        that.o = o;
+
+        that.startY = 0;
+        that.movingFlag = false;
+
+        that.$this.addClass('fullPage-wp');
+        that.$parent = that.$this.parent();
+        that.$pages = that.$this.find(o.page).addClass('fullPage-page');
+        that.pagesLength = that.$pages.length;
+        that.update();        
+        that.initEvent();
+    }
+    function Fullpage($this, option) {
+        this.$this = $this;
+        init.call(this, option);
     }
 
-    $.fn.fullpage = function (o) {
-        var d = {
-            page: '.page',
-            start: 0,
-            duration: 500,
-            drag: false,
-            onchange: function () {}
-        };
+    $.extend(Fullpage.prototype, {
+        update: function () {
+            this.height = this.$parent.height();
 
-        $.extend(true, d, o);
+            this.$pages.height(this.height);
 
-        var $this = $(this).addClass('fullPage-wp');
-        var $parent = $this.parent();
-        var $pages = $this.find(d.page).addClass('fullPage-page');
-        var pagesLength = $pages.length;
+            this.moveTo(this.curIndex, -1);
+        },
+        initEvent: function () {
+            var that = this;
+            var $this = that.$this;
 
-        var height = $parent.height();
-        var curIndex = d.start;
-        var startY = 0;
-        var movingFlag = false;
-        function initEvent() {
             $this.on('touchstart', function(e){
-                if (movingFlag) {return 0;}
                 e.preventDefault();
-                startY = e.targetTouches[0].pageY;
+                if (that.movingFlag) {return 0;}
+
+                that.startY = e.targetTouches[0].pageY;
             });
             $this.on('touchend', function (e) {
-                if (movingFlag) {return 0;}
                 e.preventDefault();
-                var sub = e.changedTouches[0].pageY - startY;
-                var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
-                var preIndex = curIndex;
-                curIndex = fix(curIndex + der);
+                if (that.movingFlag) {return 0;}
 
-                moveTo(curIndex, preIndex, true);
+                var sub = e.changedTouches[0].pageY - that.startY;
+                var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
+
+                that.moveTo(that.curIndex + der, that.curIndex, true);
             });
-            if (d.drag) {
+            if (that.o.drag) {
                 $this.on('touchmove', function (e) {
-                    if (movingFlag) {return 0;}
                     e.preventDefault();
-                    var top = e.changedTouches[0].pageY - startY;
-                    $this.removeClass('anim').css('top', -curIndex * height + top + 'px');
+                    if (that.movingFlag) {return 0;}
+                    
+                    var top = e.changedTouches[0].pageY - that.startY;
+                    $this.removeClass('anim').css('top', - that.curIndex * that.height + top + 'px');
                 });
             }
-        }
-        function fix(cur) {
-            if (cur < 0) {
-                return 0;
-            }
 
-            if (cur >= pagesLength) {
-                return pagesLength - 1;
-            }
+            // 翻转屏幕提示
+            // ==============================             
+            window.addEventListener("orientationchange", function() {                
+                if (window.orientation === 180 || window.orientation === 0) {  
+                    that.o.orientationchange('portrait');
+                }  
+                if (window.orientation === 90 || window.orientation === -90 ){  
+                    that.o.orientationchange('landscape');
+                }
+            }, false);
 
-            return cur;
-        }
-        function moveTo(cur, pre, anim) {
+            window.addEventListener("resize", function() {
+                that.update();
+            }, false);
+        },
+        moveTo: function (cur, prev, anim) {
+            var that = this;
+            var $this = that.$this;
+
+            cur = fix(cur, that.pagesLength);
+            prev = prev === undefined ? that.curIndex : prev;
+
             if (anim) {
                 $this.addClass('anim');
-                movingFlag = true;
             } else {
                 $this.removeClass('anim');
             }
-            $this.css('top', -cur * height + 'px');
+
+            if (cur !== prev) {
+                that.o.beforeChange({cur: cur, prev: prev});
+            }
+
+            that.movingFlag = true;            
+            that.curIndex = cur;
+            $this.css('top', - cur * that.height + 'px');
+
+            if (cur !== prev) {
+                that.o.change({cur: cur, prev: prev});
+            }
+
             window.setTimeout(function () {
-                movingFlag = false;
-                if (cur !== pre) {
-                    d.onchange({cur: cur});
-                    $pages.removeClass('cur').eq(cur).addClass('cur');
+                that.movingFlag = false;               
+                if (cur !== prev) {        
+                    that.o.afterChange({cur: cur, prev: prev});     
+                    that.$pages.removeClass('cur').eq(cur).addClass('cur');
                 }
-            }, d.duration);
+            }, that.o.duration);
+        },
+        movePrev: function () {
+            this.moveTo(this.curIndex - 1, this.curIndex, true);
+        },
+        moveNext: function () {
+            this.moveTo(this.curIndex + 1, this.curIndex, true);
         }
-        function init() {
-            height = $parent.height();
+    });
 
-            $pages.height(height);
-
-            moveTo(curIndex, -1, false);
-            initEvent();
-        }
-        
-        init();
+    $.fn.fullpage = function (option) {
+        if (!fullpage) {
+            fullpage = new Fullpage($(this), option);
+        }  
+        return this;
     };
-}(Zepto));
+    //暴漏方法
+    $.each(['update', 'moveTo', 'moveNext', 'movePrev'], function (key, val) {
+        $.fn.fullpage[val] = function () {
+            if (!fullpage) {return 0;}
+            fullpage[val].apply(fullpage, [].slice.call(arguments, 0));
+        };
+    });
+}(Zepto, window));
