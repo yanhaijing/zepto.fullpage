@@ -6,8 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    <title>Document</title>
     <link rel="stylesheet" href="../src/zepto.fullpage.css">
     <link rel="stylesheet" href="css/global.css">
+    <style>
+        #prev, #next{
+            position: fixed;
+            z-index: 1;
+            right: 10px;
+        }
+        #prev{
+            top: 100px;
+        }
+        #next{
+            top: 150px;
+        }
+    </style>
 </head>
 <body>
+    <a href="" id="prev" data-dir="movePrev">向前</a>
+    <a href="" id="next" data-dir="moveNext">向后</a>
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">1</div>
@@ -20,7 +35,11 @@
     <script src="js/zepto.min.js"></script>
     <script src="../src/zepto.fullpage.js"></script>
     <script>
-        $('.wp-inner').fullpage({drag: true});
+        $('.wp-inner').fullpage();
+        $('#prev, #next').on('click', function (e) {
+            e.preventDefault();
+            $.fn.fullpage[$(this).data('dir')]();
+        });
     </script>
 </body>
 </html>
