@@ -35,7 +35,7 @@ zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](h
 
 	$('.wp-inner').fullpage();
 
-**注意：实在.wp-inner上调用的。**
+**注意：是在.wp-inner上调用的。**
 
 更多例子，请移步[这里](demo)。
 
