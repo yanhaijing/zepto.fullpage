@@ -17,6 +17,6 @@
     "bower_components",
   ],
   "dependencies": {
-    "jquery": "1.x"
+    "zepto": "1.x"
   }
 }
