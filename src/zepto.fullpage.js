@@ -27,7 +27,7 @@
     function init (option) {
         var o = $.extend(true, {}, d, option);
         var that = this;
-        that.curIndex = o.start;
+        that.curIndex = -1;
         that.o = o;
 
         that.startY = 0;
@@ -51,7 +51,7 @@
 
             this.$pages.height(this.height);
 
-            this.moveTo(this.curIndex, -1);
+            this.moveTo(this.curIndex < 0 ? this.o.start : this.curIndex);
         },
         initEvent: function () {
             var that = this;
@@ -70,7 +70,7 @@
                 var sub = e.changedTouches[0].pageY - that.startY;
                 var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
 
-                that.moveTo(that.curIndex + der, that.curIndex, true);
+                that.moveTo(that.curIndex + der, true);
             });
             if (that.o.drag) {
                 $this.on('touchmove', function (e) {
@@ -97,12 +97,11 @@
                 that.update();
             }, false);
         },
-        moveTo: function (cur, prev, anim) {
+        moveTo: function (next, anim) {
             var that = this;
             var $this = that.$this;
-
-            cur = fix(cur, that.pagesLength);
-            prev = prev === undefined ? that.curIndex : prev;
+            var cur = that.curIndex;
+            next = fix(next, that.pagesLength);
 
             if (anim) {
                 $this.addClass('anim');
@@ -110,31 +109,31 @@
                 $this.removeClass('anim');
             }
 
-            if (cur !== prev) {
-                that.o.beforeChange({cur: cur, prev: prev});
+            if (next !== cur) {
+                that.o.beforeChange({next: next, cur: cur});
             }
 
-            that.movingFlag = true;            
-            that.curIndex = cur;
-            $this.css('top', - cur * that.height + 'px');
+            that.movingFlag = true;         
+            that.curIndex = next;
+            $this.css('top', - next * that.height + 'px');
 
-            if (cur !== prev) {
-                that.o.change({cur: cur, prev: prev});
+            if (next !== cur) {
+                that.o.change({next: next, cur: cur});
             }
 
             window.setTimeout(function () {
                 that.movingFlag = false;               
-                if (cur !== prev) {        
-                    that.o.afterChange({cur: cur, prev: prev});     
-                    that.$pages.removeClass('cur').eq(cur).addClass('cur');
+                if (next !== cur) {        
+                    that.o.afterChange({next: next, cur: cur});     
+                    that.$pages.removeClass('cur').eq(next).addClass('cur');
                 }
             }, that.o.duration);
         },
-        movePrev: function () {
-            this.moveTo(this.curIndex - 1, this.curIndex, true);
+        movePrev: function (anim) {
+            this.moveTo(this.curIndex - 1, anim);
         },
-        moveNext: function () {
-            this.moveTo(this.curIndex + 1, this.curIndex, true);
+        moveNext: function (anim) {
+            this.moveTo(this.curIndex + 1, anim);
         }
     });
 

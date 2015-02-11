@@ -7,8 +7,8 @@
     transform: translate3d(0,0,0);     
 }
 .fullPage-wp.anim{
-    -webkit-transition: all 500ms 0 ease;
-    transition: all 500ms 0 ease; 
+    -webkit-transition: all 500ms 0 ease-out;
+    transition: all 500ms 0 ease-out; 
 }
 .fullPage-page{
     display: block;
