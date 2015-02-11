@@ -47,6 +47,10 @@ zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](h
 
 如果你想为zepto.fullpage贡献代码，请采用fork + pull request 方式，并在发起pr前先将master上超前的代码rebase到自己的分支上。
 
+###发布Bower
+    
+    $ bower register template.js git://github.com/yanhaijing/zepto.fullpage.git
+
 ##报告问题
 
 - [Issues](https://github.com/yanhaijing/zepto.fullpage/issues "报告问题")
