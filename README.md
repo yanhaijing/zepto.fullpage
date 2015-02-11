@@ -1,7 +1,7 @@
 zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
 ==============
 
-专注于移动端的fullpage.js，依赖Zepto。
+专注于移动端的fullPage.js，依赖Zepto。
 
 ##功能概述
 可实现移动端的单页滚动效果，可自定义参数，提供回调接口，和公开接口。
@@ -24,7 +24,7 @@ zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](h
     </div>
 
 ###CSS
-父容器需是固定高度，并且移除为隐藏，fullpage会使用父元素的宽度和高度。
+父容器需是固定高度，并且溢出为隐藏，fullpage会使用父元素的宽度和高度。
 
 	.wp{
 	    overflow: hidden;            
