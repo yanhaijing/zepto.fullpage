@@ -1,4 +1,4 @@
-zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
+zepto.fullpage [![release](https://img.shields.io/badge/release-v0.1.0-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases/tag/v0.1.0) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
 ==============
 
 专注于移动端的fullPage.js，依赖Zepto。
@@ -49,7 +49,7 @@ zepto.fullpage [![license](https://img.shields.io/badge/license-MIT-blue.svg)](h
 
 ###发布Bower
     
-    $ bower register template.js git://github.com/yanhaijing/zepto.fullpage.git
+    $ bower register zepto.fullpage git://github.com/yanhaijing/zepto.fullpage.git
 
 ##报告问题
 
