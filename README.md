@@ -71,7 +71,6 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.1.0-orange.sv
 [更新日志](CHANGELOG.md)
 
 ## TODO
-- 循环滚动
 - 横向滚屏
 
 ## 谁在使用
