@@ -114,7 +114,9 @@
                     }
 
                     var top = e.changedTouches[0].pageY - that.startY;
-                    $this.removeClass('anim').css('top', -that.curIndex * that.height + top + 'px');
+                    $this.removeClass('anim')
+                        .css('-webkit-transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)')
+                        .css('transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)');
                 });
             }
         },
@@ -149,7 +151,8 @@
 
             that.movingFlag = true;
             that.curIndex = next;
-            $this.css('top', -next * that.height + 'px');
+            $this.css('-webkit-transform', 'translateY(' + (-next * that.height) + 'px)');
+            $this.css('transform', 'translateY(' + (-next * that.height) + 'px)');
 
             if (next !== cur) {
                 that.o.change({
