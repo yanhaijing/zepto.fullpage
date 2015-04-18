@@ -46,6 +46,7 @@
         that.pagesLength = that.$pages.length;
         that.update();
         that.initEvent();
+        that.status = 0;
     }
 
     function Fullpage($this, option) {
@@ -63,9 +64,43 @@
         },
         initEvent: function() {
             var that = this;
-            //var $this = that.$this;
+            var $this = that.$this;
 
-            that.start();
+            $this.on('touchstart', function(e) {
+                if (!that.status) {return 1;}
+                e.preventDefault();
+                if (that.movingFlag) {
+                    return 0;
+                }
+
+                that.startY = e.targetTouches[0].pageY;
+            });
+            $this.on('touchend', function(e) {
+                if (!that.status) {return 1;}
+                e.preventDefault();
+                if (that.movingFlag) {
+                    return 0;
+                }
+
+                var sub = e.changedTouches[0].pageY - that.startY;
+                var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
+
+                that.moveTo(that.curIndex + der, true);
+            });
+            if (that.o.drag) {
+                $this.on('touchmove', function(e) {
+                    if (!that.status) {return 1;}
+                    e.preventDefault();
+                    if (that.movingFlag) {
+                        return 0;
+                    }
+
+                    var top = e.changedTouches[0].pageY - that.startY;
+                    $this.removeClass('anim')
+                        .css('-webkit-transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)')
+                        .css('transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)');
+                });
+            }
 
             // 翻转屏幕提示
             // ==============================             
@@ -84,51 +119,10 @@
         },
 
         start: function() {
-            var that = this;
-            var $this = that.$this;
-
-            $this.on('touchstart', function(e) {
-                e.preventDefault();
-                if (that.movingFlag) {
-                    return 0;
-                }
-
-                that.startY = e.targetTouches[0].pageY;
-            });
-            $this.on('touchend', function(e) {
-                e.preventDefault();
-                if (that.movingFlag) {
-                    return 0;
-                }
-
-                var sub = e.changedTouches[0].pageY - that.startY;
-                var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
-
-                that.moveTo(that.curIndex + der, true);
-            });
-            if (that.o.drag) {
-                $this.on('touchmove', function(e) {
-                    e.preventDefault();
-                    if (that.movingFlag) {
-                        return 0;
-                    }
-
-                    var top = e.changedTouches[0].pageY - that.startY;
-                    $this.removeClass('anim')
-                        .css('-webkit-transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)')
-                        .css('transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)');
-                });
-            }
+            this.status = 1;
         },
         stop: function() {
-            var that = this;
-            var $this = that.$this;
-
-            $this.off('touchstart');
-            $this.off('touchend');
-            if (that.o.drag) {
-                $this.off('touchmove');
-            }
+            this.status = 0;
         },
         moveTo: function(next, anim) {
             var that = this;
