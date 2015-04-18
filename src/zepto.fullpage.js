@@ -12,6 +12,7 @@
         duration: 500,
         loop: false,
         drag: false,
+        dir: 'v',
         change: function(data) {},
         beforeChange: function(data) {},
         afterChange: function(data) {},
@@ -31,6 +32,12 @@
         return cur;
     }
 
+    function move($ele, dir, dist) {
+        var translate = dir === 'v' ? 'translateY' : 'translateX';
+        $ele.css('-webkit-transform', translate + '(' + dist + 'px)')
+        .css('transform', translate + '(' + dist + 'px)');
+    }
+
     function init(option) {
         var o = $.extend(true, {}, d, option);
         var that = this;
@@ -42,11 +49,11 @@
 
         that.$this.addClass('fullPage-wp');
         that.$parent = that.$this.parent();
-        that.$pages = that.$this.find(o.page).addClass('fullPage-page');
+        that.$pages = that.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
         that.pagesLength = that.$pages.length;
         that.update();
         that.initEvent();
-        that.status = 0;
+        that.status = 1;
     }
 
     function Fullpage($this, option) {
@@ -56,8 +63,13 @@
 
     $.extend(Fullpage.prototype, {
         update: function() {
-            this.height = this.$parent.height();
+            if (this.o.dir === 'h') {
+                this.width = this.$parent.width();
+                this.$pages.width(this.width);
+                this.$this.width(this.width * this.pagesLength);
+            }
 
+            this.height = this.$parent.height();
             this.$pages.height(this.height);
 
             this.moveTo(this.curIndex < 0 ? this.o.start : this.curIndex);
@@ -73,6 +85,7 @@
                     return 0;
                 }
 
+                that.startX = e.targetTouches[0].pageX;
                 that.startY = e.targetTouches[0].pageY;
             });
             $this.on('touchend', function(e) {
@@ -82,7 +95,7 @@
                     return 0;
                 }
 
-                var sub = e.changedTouches[0].pageY - that.startY;
+                var sub = that.o.dir === 'v' ? e.changedTouches[0].pageY - that.startY : e.changedTouches[0].pageX - that.startX;
                 var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
 
                 that.moveTo(that.curIndex + der, true);
@@ -95,10 +108,11 @@
                         return 0;
                     }
 
-                    var top = e.changedTouches[0].pageY - that.startY;
-                    $this.removeClass('anim')
-                        .css('-webkit-transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)')
-                        .css('transform', 'translateY(' + (-that.curIndex * that.height + top) + 'px)');
+                    var y = e.changedTouches[0].pageY - that.startY;
+                    var x = e.changedTouches[0].pageX - that.startX;
+                    var dist = -that.curIndex * (that.o.dir === 'v' ? (that.height + y) : (that.width + x));
+                    $this.removeClass('anim');
+                    move($this, that.o.dir, dist);
                 });
             }
 
@@ -145,8 +159,7 @@
 
             that.movingFlag = true;
             that.curIndex = next;
-            $this.css('-webkit-transform', 'translateY(' + (-next * that.height) + 'px)');
-            $this.css('transform', 'translateY(' + (-next * that.height) + 'px)');
+            move($this, that.o.dir, -next * (that.o.dir === 'v' ? that.height : that.width));
 
             if (next !== cur) {
                 that.o.change({

@@ -2,6 +2,12 @@
     -webkit-transform: translate3d(0,0,0);     
     transform: translate3d(0,0,0);     
 }
+.fullPage-wp:after {
+    display: block;
+    content: ' ';
+    height: 0;
+    clear: both;
+}
 .fullPage-wp.anim{
     -webkit-transition: all 500ms 0 ease-out;
     transition: all 500ms 0 ease-out; 
@@ -9,4 +15,8 @@
 .fullPage-page{
     display: block;
     overflow: hidden;
+}
+
+.fullPage-dir-h {
+    float: left;
 }
