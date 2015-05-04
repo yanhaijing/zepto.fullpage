@@ -9,8 +9,8 @@
     clear: both;
 }
 .fullPage-wp.anim{
-    -webkit-transition: all 500ms 0 ease-out;
-    transition: all 500ms 0 ease-out; 
+    -webkit-transition: all 500ms ease-out 0s;
+    transition: all 500ms ease-out 0s; 
 }
 .fullPage-page{
     display: block;

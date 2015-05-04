@@ -110,7 +110,7 @@
 
                     var y = e.changedTouches[0].pageY - that.startY;
                     var x = e.changedTouches[0].pageX - that.startX;
-                    var dist = -that.curIndex * (that.o.dir === 'v' ? (that.height + y) : (that.width + x));
+                    var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                     $this.removeClass('anim');
                     move($this, that.o.dir, dist);
                 });
