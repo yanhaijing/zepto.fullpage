@@ -9,6 +9,8 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
         start: 0,
         duration: 500,
         drag: false,
+		loop: false,
+		dir: 'v',
         change: function () {},
         beforeChange: function () {},
         afterChange: function () {},
@@ -30,8 +32,11 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 ### drag
 是否开启拖动功能，默认关闭。
 
-## loop
+### loop
 是否开启循环滚动，默认false。
+
+### dir
+切换方向，默认垂直方向(v|h)。
 
 ### change/beforeChange/afterChange
 当切换屏幕时会触发的事件。剩下两个顾名思义吗。
