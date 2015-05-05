@@ -71,10 +71,11 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.0-orange.sv
 [更新日志](CHANGELOG.md)
 
 ## TODO
-- 横向滚屏
+- 横向滚屏 v0.3.0 √
+- 循环滚动 v0.2.0 √
 
 ## 谁在使用
-**注:如果您也在使用，欢迎反馈给我**
+**注:如果您也在使用，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/9)**
 
 - [百度知道](http://zhidao.baidu.com/s/5_0-page/index.html)
 
