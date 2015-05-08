@@ -34,8 +34,7 @@
 
     function move($ele, dir, dist) {
         var translate = dir === 'v' ? 'translateY' : 'translateX';
-        $ele.css('-webkit-transform', translate + '(' + dist + 'px)')
-        .css('transform', translate + '(' + dist + 'px)');
+        $ele.css({'-webkit-transform':translate + '(' + dist + 'px)','transform':translate + '(' + dist + 'px)'});
     }
 
     function init(option) {
