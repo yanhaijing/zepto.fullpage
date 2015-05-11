@@ -1,3 +1,11 @@
+/*!
+ * zepto.fullpage.js
+ * https://github.com/yanhaijing/zepto.fullpage
+ * MIT licensed
+ * API https://github.com/yanhaijing/zepto.fullpage/blob/master/doc/api.md
+ *
+ * Copyright (C) 2015 Yanhaijing, http://yanhaijing.com
+ */
 (function($, window, undefined) {
     if (typeof $ === 'undefined') {
         throw new Error('zepto.fullpage\'s script requires Zepto');
@@ -192,7 +200,7 @@
         }
         return this;
     };
-    //暴漏方法
+    //暴露方法
     $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop'], function(key, val) {
         $.fn.fullpage[val] = function() {
             if (!fullpage) {
