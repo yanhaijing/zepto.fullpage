@@ -1,10 +1,8 @@
 /*!
- * zepto.fullpage.js
- * https://github.com/yanhaijing/zepto.fullpage
- * MIT licensed
+ * zepto.fullpage.js v0.3.0 (https://github.com/yanhaijing/zepto.fullpage)
  * API https://github.com/yanhaijing/zepto.fullpage/blob/master/doc/api.md
- *
- * Copyright (C) 2015 Yanhaijing, http://yanhaijing.com
+ * Copyright 2014 yanhaijing. All Rights Reserved
+ * Licensed under MIT (https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
  */
 (function($, window, undefined) {
     if (typeof $ === 'undefined') {
@@ -200,6 +198,7 @@
         }
         return this;
     };
+    $.fn.fullpage.version = '0.3.0';
     //暴露方法
     $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop'], function(key, val) {
         $.fn.fullpage[val] = function() {
