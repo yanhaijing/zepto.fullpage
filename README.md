@@ -1,4 +1,4 @@
-zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.0-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases/tag/v0.3.0) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
+zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.1-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases/tag/v0.3.1) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
 ==============
 
 专注于移动端的fullPage.js，依赖Zepto。
@@ -74,8 +74,8 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.0-orange.sv
 [更新日志](CHANGELOG.md)
 
 ## TODO
-- 横向滚屏 v0.3.0 √
-- 循环滚动 v0.2.0 √
+- 横向滚屏 v0.3.0 [x]
+- 循环滚动 v0.2.0 [x]
 
 ## 谁在使用
 **注:如果您也在使用，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/9)**
