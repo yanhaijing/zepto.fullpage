@@ -74,8 +74,8 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.1-orange.sv
 [更新日志](CHANGELOG.md)
 
 ## TODO
-- 横向滚屏 v0.3.0 [x]
-- 循环滚动 v0.2.0 [x]
+- 横向滚屏 v0.3.0 [√]
+- 循环滚动 v0.2.0 [√]
 
 ## 谁在使用
 **注:如果您也在使用，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/9)**
@@ -86,6 +86,7 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.1-orange.sv
 ## 成功案例
 - [百度知道-APP5.0落地页](http://zhidao.baidu.com/s/5_0-page/index.html)
 - [重庆华西妇产医院-妈妈我来啦](http://d.cqhxfk.com/game/0505/)
+- [百度经验-关于表白这事儿](http://jingyan.baidu.com/z/2015-520/index.html)
 
 ## 相关链接
 - [fullPage.js](https://github.com/alvarotrigo/fullPage.js)
