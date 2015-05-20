@@ -85,7 +85,7 @@
 
             $this.on('touchstart', function(e) {
                 if (!that.status) {return 1;}
-                e.preventDefault();
+                //e.preventDefault();
                 if (that.movingFlag) {
                     return 0;
                 }
@@ -95,7 +95,7 @@
             });
             $this.on('touchend', function(e) {
                 if (!that.status) {return 1;}
-                e.preventDefault();
+                //e.preventDefault();
                 if (that.movingFlag) {
                     return 0;
                 }
@@ -108,7 +108,7 @@
             if (that.o.drag) {
                 $this.on('touchmove', function(e) {
                     if (!that.status) {return 1;}
-                    e.preventDefault();
+                    //e.preventDefault();
                     if (that.movingFlag) {
                         return 0;
                     }
@@ -168,8 +168,8 @@
 
             if (next !== cur) {
                 that.o.change({
-                    next: next,
-                    cur: cur
+                    prev: cur,
+                    cur: next
                 });
             }
 
@@ -177,8 +177,8 @@
                 that.movingFlag = false;
                 if (next !== cur) {
                     that.o.afterChange({
-                        next: next,
-                        cur: cur
+                        prev: cur,
+                        cur: next
                     });
                     that.$pages.removeClass('cur').eq(next).addClass('cur');
                 }
