@@ -1,5 +1,6 @@
-zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.1-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases/tag/v0.3.1) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/MIT-LICENSE.txt)
-==============
+# zepto.fullpage 
+
+[![release](https://img.shields.io/badge/release-v0.3.1-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases) [![issues](https://img.shields.io/github/issues/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/issues) [![forks](https://img.shields.io/github/forks/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/network) [![stars](https://img.shields.io/github/stars/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/stargazers) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
 
 专注于移动端的fullPage.js，依赖Zepto。
 
@@ -50,10 +51,6 @@ zepto.fullpage [![release](https://img.shields.io/badge/release-v0.3.1-orange.sv
 ### 发布Bower
     
     $ bower register zepto.fullpage git://github.com/yanhaijing/zepto.fullpage.git
-
-## 报告问题
-
-- [Issues](https://github.com/yanhaijing/zepto.fullpage/issues "报告问题")
 
 ## 贡献者
 
