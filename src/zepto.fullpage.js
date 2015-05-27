@@ -25,17 +25,30 @@
         orientationchange: function(orientation) {}
     };
 
-    function fix(cur, pagesLength, loop) {
+    function fix(cur, pagesLength, loop, that) {
+        var _cur = cur;
+
         if (cur < 0) {
-            return !!loop ? pagesLength - 1 : 0;
+            _cur =  !!loop ? pagesLength - 1 : 0;
+
+            if (_cur == pagesLength - 1) {
+                that.anim = false;
+            }
+
+            return _cur;
         }
 
         if (cur >= pagesLength) {
-            return !!loop ? 0 : pagesLength - 1;
+            _cur = !!loop ? 0 : pagesLength - 1;
+
+            if (_cur == 0) {
+                that.anim = false;
+            }
+
+            return _cur;
         }
 
-
-        return cur;
+        return _cur;
     }
 
     function move($ele, dir, dist) {
@@ -147,9 +160,12 @@
             var that = this;
             var $this = that.$this;
             var cur = that.curIndex;
-            next = fix(next, that.pagesLength, that.o.loop);
 
-            if (anim) {
+            that.anim = anim;
+
+            next = fix(next, that.pagesLength, that.o.loop, that);
+
+            if (that.anim) {
                 $this.addClass('anim');
             } else {
                 $this.removeClass('anim');
