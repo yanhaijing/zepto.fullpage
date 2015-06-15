@@ -115,6 +115,8 @@
                     if (!that.status) {return 1;}
                     //e.preventDefault();
                     if (that.movingFlag) {
+                        that.startX = e.targetTouches[0].pageX;
+                        that.startY = e.targetTouches[0].pageY;
                         return 0;
                     }
 
