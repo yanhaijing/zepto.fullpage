@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
     <title>Document</title>
     <link rel="stylesheet" href="css/global.css">
+    <style>
+        .start {
+            left: initial;
+            top: 50%;
+            right: 10px;
+            -webkit-transform: rotate(90deg);
+        }
+    </style>
 </head>
 <body>
     <div class="wp">
@@ -17,12 +25,9 @@
         </div>
     </div>
     <span class="start"><b></b></span>
-    <script src="js/zepto.min.js"></script>
-    <script src="../src/zepto.fullpage.js"></script>
+    <script src="../src/js.fullpage.js"></script>
     <script>
-        $('.wp-inner').fullpage({
-            loop:true
-        });
+        document.getElementsByClassName('wp-inner')[0].fullpage({dir: 'h'});
     </script>
 </body>
 </html>

@@ -234,7 +234,7 @@
         }
         return this;
     };
-    $.fn.fullpage.version = '0.3.2';
+    $.fn.fullpage.version = '0.3.1';
     //暴露方法
     $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop'], function(key, val) {
         $.fn.fullpage[val] = function() {

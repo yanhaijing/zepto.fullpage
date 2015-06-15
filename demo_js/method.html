@@ -7,15 +7,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/global.css">
     <style>
-        .start {
-            left: initial;
-            top: 50%;
+        #prev, #next{
+            position: fixed;
+            z-index: 1;
             right: 10px;
-            -webkit-transform: rotate(90deg);
+        }
+        #prev{
+            top: 100px;
+        }
+        #next{
+            top: 150px;
         }
     </style>
 </head>
 <body>
+    <a href="" id="prev">向前</a>
+    <a href="" id="next">向后</a>
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">1</div>
@@ -25,10 +32,17 @@
         </div>
     </div>
     <span class="start"><b></b></span>
-    <script src="js/zepto.min.js"></script>
-    <script src="../src/zepto.fullpage.js"></script>
+    <script src="../src/js.fullpage.js"></script>
     <script>
-        $('.wp-inner').fullpage({dir: 'h'});
+        var fullpage = document.getElementsByClassName('wp-inner')[0].fullpage();
+        document.getElementById("prev").onclick = function(e){
+            e.preventDefault();
+            fullpage.movePrev(true);
+        };
+        document.getElementById("next").onclick = function(e){
+            e.preventDefault();
+            fullpage.moveNext(true);
+        };
     </script>
 </body>
 </html>

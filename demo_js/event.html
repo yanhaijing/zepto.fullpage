@@ -43,13 +43,20 @@
         </ul>
     </div>
     <span class="start"><b></b></span>
-    <script src="js/zepto.min.js"></script>
-    <script src="../src/zepto.fullpage.js"></script>
+    <script src="../src/js.fullpage.js"></script>
     <script>
-        $('.wp-inner').fullpage({
+        document.getElementsByClassName('wp-inner')[0].fullpage({
             change: function (e) {
                 console.log('change', e.next, e.cur);
-                $('.indicator li').removeClass('cur').eq(e.cur).addClass('cur');
+                var liEles = document.getElementsByClassName("indicator")[0].getElementsByTagName("li");
+                for (var i = 0; i < liEles.length; i++) {
+                    var liEle = liEles[i];
+                    if(i === e.cur){
+                        liEle.classList.add("cur");
+                    }else{
+                        liEle.classList.remove("cur");
+                    }
+                }
             },
             beforeChange: function (e) {
                 console.log('beforeChange', e.next, e.cur);
