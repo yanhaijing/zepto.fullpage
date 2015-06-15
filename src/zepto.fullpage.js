@@ -201,6 +201,8 @@
 
     $.fn.fullpage = function(option) {
         if (!fullpage) {
+            var duration = d.duration + "ms";
+            if(option && option.duration) duration = option.duration + "ms";
             var HEAD = document.getElementsByTagName("head").item(0);
             var style = document.createElement("style");
             style.innerHTML = ".fullPage-wp{" + "\n" +
@@ -214,8 +216,8 @@
                 "clear: both;" + "\n" +
                 "}" + "\n" +
                 ".fullPage-wp.anim{" + "\n" +
-                "-webkit-transition: all 500ms ease-out 0s;" + "\n" +
-                "transition: all 500ms ease-out 0s;" + "\n" +
+                "-webkit-transition: all "+duration+" ease-out 0s;" + "\n" +
+                "transition: all "+duration+" ease-out 0s;" + "\n" +
                 "}" + "\n" +
                 ".fullPage-page{" + "\n" +
                 "display: block;" + "\n" +
