@@ -39,8 +39,13 @@
     }
 
     function move($ele, dir, dist) {
-        var translate = dir === 'v' ? 'translateY' : 'translateX';
-        $ele.css({'-webkit-transform':translate + '(' + dist + 'px)','transform':translate + '(' + dist + 'px)'});
+        var xPx = "0px" , yPx = "0px";
+        if(dir === 'v') yPx = dist+"px";
+        else xPx = dist + "px";
+        $ele.css({
+            '-webkit-transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);',
+            'transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);'
+        });
     }
 
     function init(option) {
@@ -114,7 +119,9 @@
                     }
 
                     var y = e.changedTouches[0].pageY - that.startY;
+                    if( (that.curIndex==0 && y>0) || (that.curIndex===that.pagesLength-1 && y<0) ) y/=2;
                     var x = e.changedTouches[0].pageX - that.startX;
+                    if( (that.curIndex==0 && x>0) || (that.curIndex===that.pagesLength-1 && x<0) ) x/=2;
                     var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                     $this.removeClass('anim');
                     move($this, that.o.dir, dist);
@@ -194,11 +201,36 @@
 
     $.fn.fullpage = function(option) {
         if (!fullpage) {
+            var HEAD = document.getElementsByTagName("head").item(0);
+            var style = document.createElement("style");
+            style.innerHTML = ".fullPage-wp{" + "\n" +
+                "-webkit-transform: translate3d(0,0,0);" + "\n" +
+                "transform: translate3d(0,0,0);" + "\n" +
+                "}" + "\n" +
+                ".fullPage-wp:after {" + "\n" +
+                "display: block;" + "\n" +
+                "content: ' ';" + "\n" +
+                "height: 0;" + "\n" +
+                "clear: both;" + "\n" +
+                "}" + "\n" +
+                ".fullPage-wp.anim{" + "\n" +
+                "-webkit-transition: all 500ms ease-out 0s;" + "\n" +
+                "transition: all 500ms ease-out 0s;" + "\n" +
+                "}" + "\n" +
+                ".fullPage-page{" + "\n" +
+                "display: block;" + "\n" +
+                "overflow: hidden;" + "\n" +
+                "}" + "\n" +
+                ".fullPage-dir-h {" + "\n" +
+                "float: left;" + "\n" +
+                "}";
+            HEAD.appendChild(style);
+
             fullpage = new Fullpage($(this), option);
         }
         return this;
     };
-    $.fn.fullpage.version = '0.3.1';
+    $.fn.fullpage.version = '0.3.2';
     //暴露方法
     $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop'], function(key, val) {
         $.fn.fullpage[val] = function() {
