@@ -223,33 +223,6 @@
     };
 
     Element.prototype.fullpage = function(option) {
-        var duration = d.duration + "ms";
-        if(option && option.duration) duration = option.duration + "ms";
-        var HEAD = document.getElementsByTagName("head").item(0);
-        var style = document.createElement("style");
-        style.innerHTML = ".fullPage-wp{" + "\n" +
-            "-webkit-transform: translate3d(0,0,0);" + "\n" +
-            "transform: translate3d(0,0,0);" + "\n" +
-            "}" + "\n" +
-            ".fullPage-wp:after {" + "\n" +
-            "display: block;" + "\n" +
-            "content: ' ';" + "\n" +
-            "height: 0;" + "\n" +
-            "clear: both;" + "\n" +
-            "}" + "\n" +
-            ".fullPage-wp.anim{" + "\n" +
-            "-webkit-transition: all "+duration+" ease-out 0s;" + "\n" +
-            "transition: all "+duration+" ease-out 0s;" + "\n" +
-            "}" + "\n" +
-            ".fullPage-page{" + "\n" +
-            "display: block;" + "\n" +
-            "overflow: hidden;" + "\n" +
-            "}" + "\n" +
-            ".fullPage-dir-h {" + "\n" +
-            "float: left;" + "\n" +
-            "}";
-        HEAD.appendChild(style);
-
         return new Fullpage(this, option);
     };
 }(window));
