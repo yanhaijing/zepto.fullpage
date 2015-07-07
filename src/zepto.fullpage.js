@@ -39,8 +39,13 @@
     }
 
     function move($ele, dir, dist) {
-        var translate = dir === 'v' ? 'translateY' : 'translateX';
-        $ele.css({'-webkit-transform':translate + '(' + dist + 'px)','transform':translate + '(' + dist + 'px)'});
+        var xPx = "0px" , yPx = "0px";
+        if(dir === 'v') yPx = dist+"px";
+        else xPx = dist + "px";
+        $ele.css({
+            '-webkit-transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);',
+            'transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);'
+        });
     }
 
     function init(option) {
@@ -110,11 +115,15 @@
                     if (!that.status) {return 1;}
                     //e.preventDefault();
                     if (that.movingFlag) {
+                        that.startX = e.targetTouches[0].pageX;
+                        that.startY = e.targetTouches[0].pageY;
                         return 0;
                     }
 
                     var y = e.changedTouches[0].pageY - that.startY;
+                    if( (that.curIndex==0 && y>0) || (that.curIndex===that.pagesLength-1 && y<0) ) y/=2;
                     var x = e.changedTouches[0].pageX - that.startX;
+                    if( (that.curIndex==0 && x>0) || (that.curIndex===that.pagesLength-1 && x<0) ) x/=2;
                     var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                     $this.removeClass('anim');
                     move($this, that.o.dir, dist);
