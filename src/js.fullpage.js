@@ -15,6 +15,7 @@
         loop: false,
         drag: false,
         dir: 'v',
+        der: 0.1,
         change: function(data) {},
         beforeChange: function(data) {},
         afterChange: function(data) {},
@@ -120,8 +121,8 @@
                 return 0;
             }
 
-            var sub = that.o.dir === 'v' ? e.changedTouches[0].pageY - that.startY : e.changedTouches[0].pageX - that.startX;
-            var der = (sub > 30 || sub < -30) ? sub > 0 ? -1 : 1 : 0;
+            var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY)/that.height : (e.changedTouches[0].pageX - that.startX)/that.width;
+            var der = (sub > that.o.der || sub < -that.o.der) ? sub > 0 ? -1 : 1 : 0;
 
             that.moveTo(that.curIndex + der, true);
         });
