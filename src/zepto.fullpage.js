@@ -157,6 +157,7 @@
             var that = this;
             var $this = that.$this;
             var cur = that.curIndex;
+
             next = fix(next, that.pagesLength, that.o.loop);
 
             if (anim) {
@@ -166,10 +167,15 @@
             }
 
             if (next !== cur) {
-                that.o.beforeChange({
+                var flag = that.o.beforeChange({
                     next: next,
                     cur: cur
                 });
+
+                // beforeChange 显示返回false 可阻止滚屏的发生
+                if (flag === false) {
+                    return 1;
+                }
             }
 
             that.movingFlag = true;
@@ -193,6 +199,8 @@
                     that.$pages.removeClass('cur').eq(next).addClass('cur');
                 }
             }, that.o.duration);
+
+            return 0;
         },
         movePrev: function(anim) {
             this.moveTo(this.curIndex - 1, anim);

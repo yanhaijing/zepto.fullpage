@@ -48,6 +48,8 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 
 e包含两个属性next和cur，表示切换到的屏幕和当前屏幕。
 
+**注意：若beforeChange显示返回false，则可阻止滚屏的发生。**
+
 ### orientationchange
 当屏幕发生旋转时的回调。
 
