@@ -63,8 +63,14 @@
 **YuyingWu**
 - [Blog](http://blog.wuyuying.com/)
 
+## 贡献者Q群
+如果你有任何疑问，请到[Issues](https://github.com/yanhaijing/zepto.fullpage/issues)反馈，此Q群为贡献者使用，仅供贡献者内部讨论使用。
+
+点击加入：[zepto.fullpage官方交流群](http://jq.qq.com/?_wv=1027&k=bc6Grs)(314819079)
+
 ## 为什么会有这个项目
 最近单页滚动的效果非常流行，这种效果的视觉冲击感很强烈，特别是对于活动页面，因为需求的迫切，在pc端诞生了 fullPage.js和onepage-scroll这样的库，在移动的浪潮下，我们自然需要把这种效果搬到移动设备上，但当我在想实现类似效果时，却找不到一个这样的库（fullpage.js对于移动端来说太大了，还要依赖jquery），所以我就开发了一个，先是用于自己项目中，后来抽了出来，就有了这个项目。
+
 
 ## 更新日志
 
@@ -91,3 +97,7 @@
 - [zepto-onepage-scroll](https://github.com/peachananr/zepto-onepage-scroll)
 - [parallax.js](https://github.com/hahnzhu/parallax.js)
 - [H5FullscreenPage](https://github.com/lvming6816077/H5FullscreenPage)
+
+## 自动化工具
+- [爆米兔移动营销平台](http://www.baomitu.com/)
+- [数说 · Legend(度厂内部)](http://legend.baidu.com/) 
