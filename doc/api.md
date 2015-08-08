@@ -62,6 +62,7 @@ e包含两个属性next和cur，表示切换到的屏幕和当前屏幕。
 - moveNext
 - start
 - stop
+- getCurIndex
 
 典型调用方法的例子如下：
 
@@ -95,3 +96,8 @@ e包含两个属性next和cur，表示切换到的屏幕和当前屏幕。
 
 ### stop
 关闭切换功能，和start配合使用
+
+## getCurIndex
+获取当前位于第一屏的方法。
+
+- return {Number} 当前位于第几屏

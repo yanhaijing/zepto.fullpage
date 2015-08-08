@@ -199,6 +199,9 @@
         },
         moveNext: function(anim) {
             this.moveTo(this.curIndex + 1, anim);
+        },
+        getCurIndex: function () {
+            return this.curIndex;
         }
     });
 
@@ -210,12 +213,12 @@
     };
     $.fn.fullpage.version = '0.3.1';
     //暴露方法
-    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop'], function(key, val) {
+    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex'], function(key, val) {
         $.fn.fullpage[val] = function() {
             if (!fullpage) {
                 return 0;
             }
-            fullpage[val].apply(fullpage, [].slice.call(arguments, 0));
+            return fullpage[val].apply(fullpage, [].slice.call(arguments, 0));
         };
     });
 }(Zepto, window));
