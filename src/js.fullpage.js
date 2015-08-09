@@ -168,6 +168,9 @@
     Fullpage.prototype.stop = function() {
         this.status = 0;
     };
+    Fullpage.prototype.getCurIndex = function () {
+        return this.curIndex;
+    };
     Fullpage.prototype.moveTo = function(next, anim) {
         var that = this;
         var ele = that.ele;
