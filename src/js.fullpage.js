@@ -181,10 +181,15 @@
         }
 
         if (next !== cur) {
-            that.o.beforeChange({
+            var flag = that.o.beforeChange({
                 next: next,
                 cur: cur
             });
+
+            // beforeChange 显示返回false 可阻止滚屏的发生
+            if (flag === false) {
+                return 1;
+            }
         }
 
         that.movingFlag = true;
