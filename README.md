@@ -103,5 +103,5 @@
 - [爆米兔移动营销平台](http://www.baomitu.com/)
 - [数说 · Legend(度厂内部)](http://legend.baidu.com/) 
 
-如果你知道其他第三方工具，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/new?title=推荐H5滚屏制作自动化工具&body=报告我发现了一款新的工具)。
+如果你知道其他第三方工具，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/51)。
 
