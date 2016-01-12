@@ -39,16 +39,17 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 切换方向，默认垂直方向(v|h)。
 
 ### der
-当滑动距离大于一个值时，才会引起滑动现象，滑动距离=der*屏幕高度|宽度，默认值为0.1
+当滑动距离大于一个值时，才会引起滑动现象，滑动距离=`der`*屏幕高度|宽度，默认值为0.1
 
 ### change/beforeChange/afterChange
 当切换屏幕时会触发的事件。剩下两个顾名思义吗。
 
 - e {Object} 事件的参数
 
-e包含两个属性next和cur，表示切换到的屏幕和当前屏幕。
+`beforeChange`的e包含两个属性`next`和`cur`，表示当前屏和将要切换的下一屏。
+`change/afterChange`的e包含两个属性`prev`和`cur`，表示前一屏和当前屏（和`beforeChange`的区别就是此时切换已经发生了，切不可逆转）。
 
-**注意：若beforeChange显示返回false，则可阻止滚屏的发生。**
+**注意：若`beforeChang`e显示返回`false`，则可阻止滚屏的发生。**
 
 ### orientationchange
 当屏幕发生旋转时的回调。
