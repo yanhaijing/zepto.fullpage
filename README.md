@@ -1,5 +1,5 @@
 # zepto.fullpage 
-[![release](https://img.shields.io/badge/release-v0.3.1-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases) [![issues](https://img.shields.io/github/issues/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/issues) [![forks](https://img.shields.io/github/forks/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/network) [![stars](https://img.shields.io/github/stars/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/stargazers) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
+[![release](https://img.shields.io/badge/release-v0.4.0-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases) [![issues](https://img.shields.io/github/issues/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/issues) [![forks](https://img.shields.io/github/forks/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/network) [![stars](https://img.shields.io/github/stars/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/stargazers) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
 
 专注于移动端的fullPage.js，依赖Zepto。
 
