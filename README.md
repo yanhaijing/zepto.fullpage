@@ -1,7 +1,7 @@
 # zepto.fullpage 
 [![release](https://img.shields.io/badge/release-v0.4.0-orange.svg)](https://github.com/yanhaijing/zepto.fullpage/releases) [![issues](https://img.shields.io/github/issues/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/issues) [![forks](https://img.shields.io/github/forks/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/network) [![stars](https://img.shields.io/github/stars/yanhaijing/zepto.fullpage.svg)](https://github.com/yanhaijing/zepto.fullpage/stargazers) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
 
-专注于移动端的fullPage.js，依赖Zepto。
+专注于移动端的fullPage.js。
 
 ## 功能概述
 可实现移动端的单页滚动效果，可自定义参数，提供回调接口，和公开接口。
