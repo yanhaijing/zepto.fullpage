@@ -5,9 +5,6 @@
  * Licensed under MIT (https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
  */
 (function(window) {
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    });
     var d = {
         page: '.page',
         start: 0,
@@ -21,6 +18,10 @@
         afterChange: function(data) {},
         orientationchange: function(orientation) {}
     };
+
+    function touchmove(e) {
+        e.preventDefault();
+    }
 
     function fix(cur, pagesLength, loop) {
         if (cur < 0) {
@@ -74,7 +75,7 @@
         that.pagesLength = that.pageEles.length;
         that.update();
         that.initEvent();
-        that.status = 1;
+        that.start();
     }
 
     function Fullpage(ele, option) {
@@ -161,12 +162,19 @@
             that.update();
         }, false);
     };
-
+    Fullpage.prototype.holdTouch = function() {
+        document.addEventListener('touchmove', touchmove);
+    };
+    Fullpage.prototype.unholdTouch = function() {
+        document.removeEventListener('touchmove', touchmove);
+    };
     Fullpage.prototype.start = function() {
         this.status = 1;
+        this.holdTouch();
     };
     Fullpage.prototype.stop = function() {
         this.status = 0;
+        this.unholdTouch();
     };
     Fullpage.prototype.getCurIndex = function () {
         return this.curIndex;
