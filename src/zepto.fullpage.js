@@ -25,7 +25,6 @@
 
     function touchmove(e) {
         e.preventDefault();
-        console.log(123);
     }
     
     function fix(cur, pagesLength, loop) {
