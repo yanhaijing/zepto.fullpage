@@ -8,9 +8,6 @@
     if (typeof $ === 'undefined') {
         throw new Error('zepto.fullpage\'s script requires Zepto');
     }
-    $(document).on('touchmove', function(e) {
-        e.preventDefault();
-    });
     var fullpage = null;
     var d = {
         page: '.page',
@@ -26,6 +23,11 @@
         orientationchange: function(orientation) {}
     };
 
+    function touchmove(e) {
+        e.preventDefault();
+        console.log(123);
+    }
+    
     function fix(cur, pagesLength, loop) {
         if (cur < 0) {
             return !!loop ? pagesLength - 1 : 0;
@@ -64,7 +66,7 @@
         that.pagesLength = that.$pages.length;
         that.update();
         that.initEvent();
-        that.status = 1;
+        that.start();
     }
 
     function Fullpage($this, option) {
@@ -147,6 +149,12 @@
             }, false);
         },
 
+        holdTouch: function() {
+            $(document).on('touchmove', touchmove);
+        },
+        unholdTouch: function() {
+            $(document).off('touchmove', touchmove);
+        },
         start: function() {
             this.status = 1;
         },
@@ -221,7 +229,7 @@
     };
     $.fn.fullpage.version = '0.4.0';
     //暴露方法
-    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex'], function(key, val) {
+    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex', 'holdTouch', 'unholdTouch'], function(key, val) {
         $.fn.fullpage[val] = function() {
             if (!fullpage) {
                 return 0;
