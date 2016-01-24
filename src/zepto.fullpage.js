@@ -157,9 +157,11 @@
         },
         start: function() {
             this.status = 1;
+            this.holdTouch();
         },
         stop: function() {
             this.status = 0;
+            this.unholdTouch();
         },
         moveTo: function(next, anim) {
             var that = this;
