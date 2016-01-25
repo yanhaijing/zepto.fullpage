@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="../src/zepto.fullpage.css">
     <link rel="stylesheet" href="css/animate.css">
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="wp">
@@ -35,12 +40,14 @@
                 // 移除动画属性
                 forEach.call(document.querySelectorAll('.js-animate'), function (v) {
                     v.classList.remove(v.dataset['animate']);
+                    v.classList.add('hide');
                 });
             },
             afterChange: function (e) {
                 // 添加动画属性
                 forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function(v) {
                     v.classList.add(v.dataset['animate']);
+                    v.classList.remove('hide');
                 });
             }
         });
