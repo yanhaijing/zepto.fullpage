@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
+    <title>一种小屏解决方案</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="../src/zepto.fullpage.css">
+</head>
+<body>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="page page1">1</div>
+            <div class="page page2">2</div>
+            <div class="page page3">3</div>
+            <div class="page page4">4</div>
+        </div>
+    </div>
+    <span class="start"><b></b></span>
+    <script src="js/zepto.min.js"></script>
+    <script src="../src/zepto.fullpage.js"></script>
+    <script>
+        if (window.innerHeight > 480) {
+            $('.wp-inner').fullpage();
+        } else {
+            // 小于480 不在单屏滚动
+            $('.wp').css('overflow', 'visible');
+            // 每屏最小高度为屏幕高度
+            $('.page').css('min-height', window.innerHeight);
+        }
+    </script>
+</body>
+</html>
