@@ -33,7 +33,7 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 是否开启拖动功能，默认关闭。
 
 ### loop
-是否开启循环滚动，默认false。
+是否开启循环滚动，默认`false`。
 
 ### dir
 切换方向，默认垂直方向(v|h)。
@@ -83,24 +83,30 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 - anim {Bollean} 可省略 是否有动画 默认为没有动画效果
 
 ### movePrev
-向前一屏，是对moveTo的封装
+向前一屏，是对`moveTo`的封装
 
 -anim {Bollean} 可省略 是否有动画 默认为没有动画效果
 
 ### moveNext
-向后一屏，是对moveTo的封装
+向后一屏，是对`moveTo`的封装
 
 -anim {Bollean} 可省略 是否有动画 默认为没有动画效果
 
 ### start
-开启切换功能，和stop配合使用。
+开启切换功能，和`stop`配合使用。每次调用`start`时都会调用`holdTouch`。
 
 丰富页面功能，比如到了某页需要点击某个元素后才能到下一页的时候 这个就有用了～～
 
 ### stop
-关闭切换功能，和start配合使用
+关闭切换功能，和`start`配合使用。每次调用`stop`时都会调用`unholdTouch`。
 
-## getCurIndex
+### holdTouch
+监控页面触摸，页面的`touchmove`事件会被阻止掉，默认开启。
+
+### unholdTouch
+释放页面触摸，在浏览器开启滑动翻页时，这样可能会有问题。
+
+### getCurIndex
 获取当前位于第一屏的方法。
 
 - return {Number} 当前位于第几屏
