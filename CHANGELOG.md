@@ -1,3 +1,10 @@
+# 0.5.0 / 2016/1/26
+- 添加holdTouch/unholdTouch 方法
+- 修改start/stop 方法的逻辑
+- 添加使用 animations.css 的demo
+- 添加播放声音的demo
+- 添加一种小屏幕解决方案
+
 # 0.4.0 / 2016/1/23
 - 使用translate3d硬件加速
 - 首尾屏添加拖动阻力

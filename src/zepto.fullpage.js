@@ -1,5 +1,5 @@
 /*!
- * zepto.fullpage.js v0.4.0 (https://github.com/yanhaijing/zepto.fullpage)
+ * zepto.fullpage.js v0.5.0 (https://github.com/yanhaijing/zepto.fullpage)
  * API https://github.com/yanhaijing/zepto.fullpage/blob/master/doc/api.md
  * Copyright 2014 yanhaijing. All Rights Reserved
  * Licensed under MIT (https://github.com/yanhaijing/zepto.fullpage/blob/master/LICENSE)
@@ -228,7 +228,7 @@
         }
         return this;
     };
-    $.fn.fullpage.version = '0.4.0';
+    $.fn.fullpage.version = '0.5.0';
     //暴露方法
     $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex', 'holdTouch', 'unholdTouch'], function(key, val) {
         $.fn.fullpage[val] = function() {
