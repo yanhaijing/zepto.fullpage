@@ -42,7 +42,6 @@
 [API](doc/api.md)
 
 ## 贡献指南
-
 如果你想为zepto.fullpage贡献代码，请采用fork + pull request 方式，并在发起pr前先将master上超前的代码rebase到自己的分支上。
 
 ### 发布Bower
@@ -50,14 +49,8 @@
     $ bower register zepto.fullpage git://github.com/yanhaijing/zepto.fullpage.git
 
 ## 贡献者
-
-**yanhaijing**
-- [Weibo](http://weibo.com/yanhaijing1234 "yanhaijing's Weibo")
-- [Email](mailto:yanhaijing@yeah.net "yanhaijing's Email")
-- [Blog](http://yanhaijing.com "yanhaijing's Blog")
-
-**YuyingWu**
-- [Blog](http://blog.wuyuying.com/)
+- [yanhaijing](http://yanhaijing.com)
+- [YuyingWu](http://blog.wuyuying.com/)
 
 ## 贡献者Q群
 如果你有任何疑问，请到[Issues](https://github.com/yanhaijing/zepto.fullpage/issues)反馈，此Q群为贡献者使用，仅供贡献者内部讨论使用。
