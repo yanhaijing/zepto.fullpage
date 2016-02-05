@@ -71,7 +71,10 @@
 ## 谁在使用
 - [百度知道](http://zhidao.baidu.com/)
 - [百度经验](http://jingyan.baidu.com/)
+- [百度师傅](http://shifu.baidu.com/)
 - [拇指医生](http://muzhi.baidu.com/)
+- [墨迹天气](http://www.mojichina.com/)
+- [58同城](http://58.com)
 
 **注:如果您也在使用，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/9)**
 
