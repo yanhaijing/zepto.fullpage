@@ -22,8 +22,8 @@
     </style>
 </head>
 <body>
-    <a href="" id="prev" data-dir="movePrev">向前</a>
-    <a href="" id="next" data-dir="moveNext">向后</a>
+    <a href="" id="prev">向前</a>
+    <a href="" id="next">向后</a>
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">1</div>
@@ -33,14 +33,17 @@
         </div>
     </div>
     <span class="start"><b></b></span>
-    <script src="js/zepto.min.js"></script>
-    <script src="../src/zepto.fullpage.js"></script>
+    <script src="../src/js.fullpage.js"></script>
     <script>
-        $('.wp-inner').fullpage();
-        $('#prev, #next').on('click', function (e) {
+        var fullpage = document.getElementsByClassName('wp-inner')[0].fullpage();
+        document.getElementById("prev").onclick = function(e){
             e.preventDefault();
-            $.fn.fullpage[$(this).data('dir')](true);
-        });
+            fullpage.movePrev(true);
+        };
+        document.getElementById("next").onclick = function(e){
+            e.preventDefault();
+            fullpage.moveNext(true);
+        };
     </script>
 </body>
 </html>

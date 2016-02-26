@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
+    <title>播放声音</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="../src/zepto.fullpage.css">
+    <style>
+        .music{
+            position: absolute;
+            z-index: 1000;
+            right: 0px;
+            top: 0px;
+            padding: 10px;
+            width: 25px;
+            height: 25px;
+        }
+        .music .music-btn {
+            display: block;
+            padding-left: 1px;
+            width: 25px;
+            height: 25px;
+            background-image: url(css/img/music-1.png);
+            background-size: 100% 100%;
+        }
+        .music .music-btn.play {
+            background-image: url(css/img/music-0.png);
+        }
+    </style>
+</head>
+<body>
+    <div id="music" class="music">
+        <a class="music-btn"></a>
+    </div>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="page page1">mp3格式</div>
+            <div class="page page2">比特率<32</div>
+            <div class="page page3">文件大小<100k</div>
+            <div class="page page4">部分手机自动播放</div>
+            <div class="page page5">部分手机触摸播放</div>
+        </div>
+    </div>
+    <span class="start"><b></b></span>
+    <script src="js/zepto.min.js"></script>
+    <script src="../src/zepto.fullpage.js"></script>
+    <script>
+        $('.wp-inner').fullpage();
+    </script>
+    <script>
+        var bgAudio = new Audio();
+        bgAudio.loadStatus = 'unload';
+        bgAudio.loop = true;
+        function loadAudio(audio, url, callback) {
+            audio.src = url;
+            audio.load();
+            audio.addEventListener('canplay', function () {
+                bgAudio.loadStatus = 'loaded';
+                callback();
+            });
+            audio.addEventListener('loadstart', function () {
+                bgAudio.loadStatus = 'loading';
+            });
+        }
+        function playAudio(){
+            if (bgAudio.loadStatus === 'unload') {
+                loadAudio(bgAudio, 'media/bg.mp3', function () {
+                    playAudio();
+                });
+                return 1;
+            }
+
+            bgAudio.play();
+        }
+        function stopAudio() {
+            bgAudio.pause();
+        }
+        bgAudio.addEventListener('playing' ,function (e) {
+            $('#music .music-btn').addClass('play');
+        });
+        bgAudio.addEventListener('pause' ,function (e) {
+            $('#music .music-btn').removeClass('play');
+        });
+
+        $('body').one('touchstart', function () {
+            playAudio();
+            $('#music').on('touchstart', function (e) {
+                if (bgAudio.paused) {
+                    playAudio();
+                    return 0;
+                }
+                stopAudio();
+                return 1;
+            });
+        });
+        window.onload = function() {
+            if (bgAudio.loadStatus !== 'unload') {return;}
+            playAudio();
+        };
+    </script>
+</body>
+</html>

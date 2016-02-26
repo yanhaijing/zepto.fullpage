@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
+    <title>异步加载每屏内容</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="../src/zepto.fullpage.css">
+</head>
+<body>
+    <script id="page2" type="text/template">
+        第二屏
+    </script>
+    <script id="page3" type="text/template">
+        第三屏
+    </script>
+    <script id="page4" type="text/template">
+        第四屏
+    </script>
+    <div class="wp">
+        <div class="wp-inner">
+            <div class="page page1" data-load="1">第一屏</div>
+            <div class="page page2"></div>
+            <div class="page page3"></div>
+            <div class="page page4"></div>
+        </div>
+    </div>
+    <span class="start"><b></b></span>
+    <script src="../src/js.fullpage.js"></script>
+    <script>
+        document.getElementsByClassName('wp-inner')[0].fullpage({
+            change: function (e) {
+                var cur = e.cur;
+                var $page = document.querySelectorAll('.page')[cur];
+                // 避免重复加载
+                if ($page.dataset.load == 1) {
+                    return 1;
+                }
+                // 加载每屏内容
+                $page.innerHTML = document.querySelector('#page' + (cur + 1)).innerHTML;
+                // 标记已加载过的屏
+                $page.dataset.load = 1;
+            }
+        });
+    </script>
+</body>
+</html>

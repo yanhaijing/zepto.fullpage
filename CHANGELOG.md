@@ -1,3 +1,20 @@
+# 0.5.0 / 2016/1/26
+- 添加holdTouch/unholdTouch 方法
+- 修改start/stop 方法的逻辑
+- 添加使用 animations.css 的demo
+- 添加播放声音的demo
+- 添加一种小屏幕解决方案
+
+# 0.4.0 / 2016/1/23
+- 使用translate3d硬件加速
+- 首尾屏添加拖动阻力
+- 添加纯js实现版本，无zepto依赖
+- 增加滑动阈值判断
+- 增加获取当前是第几屏的方法
+- 扩展beforeChange返回值的功能，若beforeChange显示返回false，则可阻止滚屏的发生
+- 添加丰富的demo
+- 修复文档描述错误
+
 # 0.3.1 / 2015/5/20
 - 修改change and afterChange 默认参数
 - 修复阻止touch事件的默认行为的bug
