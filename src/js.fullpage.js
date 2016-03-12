@@ -36,17 +36,18 @@
     }
 
     function move(ele, dir, dist) {
-        var xPx = "0px" , yPx = "0px";
-        if(dir === 'v') yPx = dist+"px";
+        var xPx = "0px",
+            yPx = "0px";
+        if (dir === 'v') yPx = dist + "px";
         else xPx = dist + "px";
         ele.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
-                                'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
+            'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
     }
 
     function init(option) {
         var o = option ? option : {};
         for (var key in d) {
-            if(!o.hasOwnProperty(key)){
+            if (!o.hasOwnProperty(key)) {
                 o[key] = d[key];
             }
         }
@@ -62,16 +63,10 @@
         that.parentEle = that.ele.parentNode;
 
         var query = o.page;
-        if(query.indexOf(".")==0){
+        if (query.indexOf(".") == 0) {
             query = query.substring(1, query.length);
         }
         that.pageEles = that.ele.getElementsByClassName(query);
-        for (var i = 0; i < that.pageEles.length; i++) {
-            var pageEle = that.pageEles[i];
-            pageEle.classList.add('fullPage-page');
-            pageEle.classList.add('fullPage-dir-' + o.dir);
-        }
-
         that.pagesLength = that.pageEles.length;
         that.update();
         that.initEvent();
@@ -83,18 +78,29 @@
         init.call(this, option);
     }
     Fullpage.prototype.update = function() {
+        var pageEle, i;
+        var o = this.o || {};
+
+        for (i = 0; i < this.pageEles.length; i++) {
+            pageEle = this.pageEles[i];
+            pageEle.classList.add('fullpage-page');
+            pageEle.classList.add('fullpage-dir-' + o.dir);
+        }
+        // update pagesLength
+        this.pagesLength = this.pageEles.length;
+
         if (this.o.dir === 'h') {
             this.width = this.parentEle.offsetWidth;
-            for (var i = 0; i < this.pageEles.length; i++) {
-                var pageEle = this.pageEles[i];
-                pageEle.style.width = this.width+ "px";
+            for (i = 0; i < this.pageEles.length; i++) {
+                pageEle = this.pageEles[i];
+                pageEle.style.width = this.width + "px";
             }
-            this.ele.style.width = (this.width * this.pagesLength)+ "px";
+            this.ele.style.width = (this.width * this.pagesLength) + "px";
         }
 
         this.height = this.parentEle.offsetHeight;
-        for (var i = 0; i < this.pageEles.length; i++) {
-            var pageEle = this.pageEles[i];
+        for (i = 0; i < this.pageEles.length; i++) {
+            pageEle = this.pageEles[i];
             pageEle.style.height = this.height + "px";
         }
 
@@ -106,7 +112,9 @@
         var ele = that.ele;
 
         ele.addEventListener('touchstart', function(e) {
-            if (!that.status) {return 1;}
+            if (!that.status) {
+                return 1;
+            }
             //e.preventDefault();
             if (that.movingFlag) {
                 return 0;
@@ -116,20 +124,24 @@
             that.startY = e.targetTouches[0].pageY;
         });
         ele.addEventListener('touchend', function(e) {
-            if (!that.status) {return 1;}
+            if (!that.status) {
+                return 1;
+            }
             //e.preventDefault();
             if (that.movingFlag) {
                 return 0;
             }
 
-            var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY)/that.height : (e.changedTouches[0].pageX - that.startX)/that.width;
+            var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
             var der = (sub > that.o.der || sub < -that.o.der) ? sub > 0 ? -1 : 1 : 0;
 
             that.moveTo(that.curIndex + der, true);
         });
         if (that.o.drag) {
             ele.addEventListener('touchmove', function(e) {
-                if (!that.status) {return 1;}
+                if (!that.status) {
+                    return 1;
+                }
                 //e.preventDefault();
                 if (that.movingFlag) {
                     that.startX = e.targetTouches[0].pageX;
@@ -138,9 +150,9 @@
                 }
 
                 var y = e.changedTouches[0].pageY - that.startY;
-                if( (that.curIndex==0 && y>0) || (that.curIndex===that.pagesLength-1 && y<0) ) y/=2;
+                if ((that.curIndex == 0 && y > 0) || (that.curIndex === that.pagesLength - 1 && y < 0)) y /= 2;
                 var x = e.changedTouches[0].pageX - that.startX;
-                if( (that.curIndex==0 && x>0) || (that.curIndex===that.pagesLength-1 && x<0) ) x/=2;
+                if ((that.curIndex == 0 && x > 0) || (that.curIndex === that.pagesLength - 1 && x < 0)) x /= 2;
                 var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                 ele.classList.remove('anim');
                 move(ele, that.o.dir, dist);
@@ -176,7 +188,7 @@
         this.status = 0;
         this.unholdTouch();
     };
-    Fullpage.prototype.getCurIndex = function () {
+    Fullpage.prototype.getCurIndex = function() {
         return this.curIndex;
     };
     Fullpage.prototype.moveTo = function(next, anim) {
@@ -223,9 +235,9 @@
                 });
                 for (var i = 0; i < that.pageEles.length; i++) {
                     var pageEle = that.pageEles[i];
-                    if(i === next){
+                    if (i === next) {
                         pageEle.classList.add("cur");
-                    }else{
+                    } else {
                         pageEle.classList.remove("cur");
                     }
                 }

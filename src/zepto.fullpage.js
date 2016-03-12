@@ -26,7 +26,7 @@
     function touchmove(e) {
         e.preventDefault();
     }
-    
+
     function fix(cur, pagesLength, loop) {
         if (cur < 0) {
             return !!loop ? pagesLength - 1 : 0;
@@ -41,12 +41,13 @@
     }
 
     function move($ele, dir, dist) {
-        var xPx = "0px" , yPx = "0px";
-        if(dir === 'v') yPx = dist+"px";
+        var xPx = "0px",
+            yPx = "0px";
+        if (dir === 'v') yPx = dist + "px";
         else xPx = dist + "px";
         $ele.css({
-            '-webkit-transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);',
-            'transform' : 'translate3d(' + xPx + ', ' + yPx + ', 0px);'
+            '-webkit-transform': 'translate3d(' + xPx + ', ' + yPx + ', 0px);',
+            'transform': 'translate3d(' + xPx + ', ' + yPx + ', 0px);'
         });
     }
 
@@ -61,7 +62,7 @@
 
         that.$this.addClass('fullPage-wp');
         that.$parent = that.$this.parent();
-        that.$pages = that.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
+        that.$pages = that.$this.find(o.page);
         that.pagesLength = that.$pages.length;
         that.update();
         that.initEvent();
@@ -75,6 +76,10 @@
 
     $.extend(Fullpage.prototype, {
         update: function() {
+            var o = this.o || {};
+            this.$pages.addClass('fullPage-page fullPage-dir-' + o.dir);
+            this.pagesLength = this.$pages.length;
+
             if (this.o.dir === 'h') {
                 this.width = this.$parent.width();
                 this.$pages.width(this.width);
@@ -91,7 +96,9 @@
             var $this = that.$this;
 
             $this.on('touchstart', function(e) {
-                if (!that.status) {return 1;}
+                if (!that.status) {
+                    return 1;
+                }
                 //e.preventDefault();
                 if (that.movingFlag) {
                     return 0;
@@ -101,20 +108,24 @@
                 that.startY = e.targetTouches[0].pageY;
             });
             $this.on('touchend', function(e) {
-                if (!that.status) {return 1;}
+                if (!that.status) {
+                    return 1;
+                }
                 //e.preventDefault();
                 if (that.movingFlag) {
                     return 0;
                 }
 
-                var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY)/that.height : (e.changedTouches[0].pageX - that.startX)/that.width;
+                var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
                 var der = (sub > that.o.der || sub < -that.o.der) ? sub > 0 ? -1 : 1 : 0;
 
                 that.moveTo(that.curIndex + der, true);
             });
             if (that.o.drag) {
                 $this.on('touchmove', function(e) {
-                    if (!that.status) {return 1;}
+                    if (!that.status) {
+                        return 1;
+                    }
                     //e.preventDefault();
                     if (that.movingFlag) {
                         that.startX = e.targetTouches[0].pageX;
@@ -123,9 +134,9 @@
                     }
 
                     var y = e.changedTouches[0].pageY - that.startY;
-                    if( (that.curIndex==0 && y>0) || (that.curIndex===that.pagesLength-1 && y<0) ) y/=2;
+                    if ((that.curIndex == 0 && y > 0) || (that.curIndex === that.pagesLength - 1 && y < 0)) y /= 2;
                     var x = e.changedTouches[0].pageX - that.startX;
-                    if( (that.curIndex==0 && x>0) || (that.curIndex===that.pagesLength-1 && x<0) ) x/=2;
+                    if ((that.curIndex == 0 && x > 0) || (that.curIndex === that.pagesLength - 1 && x < 0)) x /= 2;
                     var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                     $this.removeClass('anim');
                     move($this, that.o.dir, dist);
@@ -133,7 +144,7 @@
             }
 
             // 翻转屏幕提示
-            // ==============================             
+            // ==============================
             window.addEventListener("orientationchange", function() {
                 if (window.orientation === 180 || window.orientation === 0) {
                     that.o.orientationchange('portrait');
@@ -217,7 +228,7 @@
         moveNext: function(anim) {
             this.moveTo(this.curIndex + 1, anim);
         },
-        getCurIndex: function () {
+        getCurIndex: function() {
             return this.curIndex;
         }
     });
