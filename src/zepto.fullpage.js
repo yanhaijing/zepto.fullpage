@@ -62,8 +62,8 @@
 
         that.$this.addClass('fullPage-wp');
         that.$parent = that.$this.parent();
-        that.$pages = that.$this.find(o.page);
-        that.pagesLength = that.$pages.length;
+        // that.$pages = that.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
+        // that.pagesLength = that.$pages.length;
         that.update();
         that.initEvent();
         that.start();
@@ -77,7 +77,7 @@
     $.extend(Fullpage.prototype, {
         update: function() {
             var o = this.o || {};
-            this.$pages.addClass('fullPage-page fullPage-dir-' + o.dir);
+            this.$pages = this.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
             this.pagesLength = this.$pages.length;
 
             if (this.o.dir === 'h') {

@@ -86,7 +86,7 @@
             pageEle.classList.add('fullpage-page');
             pageEle.classList.add('fullpage-dir-' + o.dir);
         }
-        // update pagesLength
+        // update pagesLength by Live Collections
         this.pagesLength = this.pageEles.length;
 
         if (this.o.dir === 'h') {
