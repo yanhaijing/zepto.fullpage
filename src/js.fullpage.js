@@ -36,8 +36,8 @@
     }
 
     function move(ele, dir, dist) {
-        var xPx = "0px" , yPx = "0px";
-        if(dir === 'v') yPx = dist+"px";
+        var xPx = '0px' , yPx = '0px';
+        if(dir === 'v') yPx = dist + 'px';
         else xPx = dist + "px";
         ele.style.cssText += (';-webkit-transform : translate3d(' + xPx + ', ' + yPx + ', 0px);' +
                                 'transform : translate3d(' + xPx + ', ' + yPx + ', 0px);');
@@ -46,7 +46,7 @@
     function init(option) {
         var o = option ? option : {};
         for (var key in d) {
-            if(!o.hasOwnProperty(key)){
+            if(!o.hasOwnProperty(key)) {
                 o[key] = d[key];
             }
         }
@@ -62,7 +62,7 @@
         that.parentEle = that.ele.parentNode;
 
         var query = o.page;
-        if(query.indexOf(".")==0){
+        if(query.indexOf(".") == 0) {
             query = query.substring(1, query.length);
         }
         that.pageEles = that.ele.getElementsByClassName(query);
@@ -87,15 +87,15 @@
             this.width = this.parentEle.offsetWidth;
             for (var i = 0; i < this.pageEles.length; i++) {
                 var pageEle = this.pageEles[i];
-                pageEle.style.width = this.width+ "px";
+                pageEle.style.width = this.width+ 'px';
             }
-            this.ele.style.width = (this.width * this.pagesLength)+ "px";
+            this.ele.style.width = (this.width * this.pagesLength)+ 'px';
         }
 
         this.height = this.parentEle.offsetHeight;
         for (var i = 0; i < this.pageEles.length; i++) {
             var pageEle = this.pageEles[i];
-            pageEle.style.height = this.height + "px";
+            pageEle.style.height = this.height + 'px';
         }
 
         this.moveTo(this.curIndex < 0 ? this.o.start : this.curIndex);
@@ -122,7 +122,7 @@
                 return 0;
             }
 
-            var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY)/that.height : (e.changedTouches[0].pageX - that.startX)/that.width;
+            var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
             var der = (sub > that.o.der || sub < -that.o.der) ? sub > 0 ? -1 : 1 : 0;
 
             that.moveTo(that.curIndex + der, true);
@@ -138,9 +138,9 @@
                 }
 
                 var y = e.changedTouches[0].pageY - that.startY;
-                if( (that.curIndex==0 && y>0) || (that.curIndex===that.pagesLength-1 && y<0) ) y/=2;
+                if( (that.curIndex == 0 && y > 0) || (that.curIndex === that.pagesLength - 1 && y < 0) ) y /= 2;
                 var x = e.changedTouches[0].pageX - that.startX;
-                if( (that.curIndex==0 && x>0) || (that.curIndex===that.pagesLength-1 && x<0) ) x/=2;
+                if( (that.curIndex == 0 && x > 0) || (that.curIndex === that.pagesLength - 1 && x < 0) ) x /= 2;
                 var dist = (that.o.dir === 'v' ? (-that.curIndex * that.height + y) : (-that.curIndex * that.width + x));
                 ele.classList.remove('anim');
                 move(ele, that.o.dir, dist);
@@ -149,7 +149,7 @@
 
         // 翻转屏幕提示
         // ==============================
-        window.addEventListener("orientationchange", function() {
+        window.addEventListener('orientationchange', function() {
             if (window.orientation === 180 || window.orientation === 0) {
                 that.o.orientationchange('portrait');
             }
@@ -158,7 +158,7 @@
             }
         }, false);
 
-        window.addEventListener("resize", function() {
+        window.addEventListener('resize', function() {
             that.update();
         }, false);
     };
