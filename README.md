@@ -97,7 +97,7 @@
 
 ## 自动化工具
 - [爆米兔移动营销平台](http://www.baomitu.com/)
-- [数说 · Legend(度厂内部)](http://legend.baidu.com/) 
+- [百度 H5](http://h5.baidu.com/) 
 
 如果你知道其他第三方工具，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/51)。
 
