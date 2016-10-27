@@ -235,7 +235,7 @@
             if (!fullpage) {
                 return 0;
             }
-            return fullpage[val].apply(fullpage, [].slice.call(arguments, 0));
+            return fullpage[val].apply(fullpage, arguments);
         };
     });
 }(Zepto, window));
