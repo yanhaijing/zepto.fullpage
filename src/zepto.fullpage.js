@@ -50,27 +50,22 @@
         });
     }
 
-    function init(option) {
-        var o = $.extend(true, {}, d, option);
-        var that = this;
-        that.curIndex = -1;
-        that.o = o;
-
-        that.startY = 0;
-        that.movingFlag = false;
-
-        that.$this.addClass('fullPage-wp');
-        that.$parent = that.$this.parent();
-        that.$pages = that.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
-        that.pagesLength = that.$pages.length;
-        that.update();
-        that.initEvent();
-        that.start();
-    }
-
     function Fullpage($this, option) {
+        var o = $.extend(true, {}, d, option);
         this.$this = $this;
-        init.call(this, option);
+        this.curIndex = -1;
+        this.o = o;
+
+        this.startY = 0;
+        this.movingFlag = false;
+
+        this.$this.addClass('fullPage-wp');
+        this.$parent = this.$this.parent();
+        this.$pages = this.$this.find(o.page).addClass('fullPage-page fullPage-dir-' + o.dir);
+        this.pagesLength = this.$pages.length;
+        this.update();
+        this.initEvent();
+        this.start();
     }
 
     $.extend(Fullpage.prototype, {
@@ -88,7 +83,7 @@
         },
         initEvent: function() {
             var that = this;
-            var $this = that.$this;
+            var $this = this.$this;
 
             $this.on('touchstart', function(e) {
                 if (!that.status) {return 1;}
@@ -164,10 +159,10 @@
         },
         moveTo: function(next, anim) {
             var that = this;
-            var $this = that.$this;
-            var cur = that.curIndex;
+            var $this = this.$this;
+            var cur = this.curIndex;
 
-            next = fix(next, that.pagesLength, that.o.loop);
+            next = fix(next, this.pagesLength, this.o.loop);
 
             if (anim) {
                 $this.addClass('anim');
@@ -176,7 +171,7 @@
             }
 
             if (next !== cur) {
-                var flag = that.o.beforeChange({
+                var flag = this.o.beforeChange({
                     next: next,
                     cur: cur
                 });
@@ -187,12 +182,12 @@
                 }
             }
 
-            that.movingFlag = true;
-            that.curIndex = next;
-            move($this, that.o.dir, -next * (that.o.dir === 'v' ? that.height : that.width));
+            this.movingFlag = true;
+            this.curIndex = next;
+            move($this, this.o.dir, -next * (this.o.dir === 'v' ? this.height : this.width));
 
             if (next !== cur) {
-                that.o.change({
+                this.o.change({
                     prev: cur,
                     cur: next
                 });
