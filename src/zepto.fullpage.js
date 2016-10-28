@@ -6,7 +6,7 @@
  */
 (function($, window, undefined) {
     if (typeof $ === 'undefined') {
-        throw new Error('zepto.fullpage\'s script requires Zepto');
+        throw new Error('zepto.fullpage\'s script requires jQuery');
     }
     var fullpage = null;
     var d = {
