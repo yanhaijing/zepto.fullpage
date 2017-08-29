@@ -92,6 +92,7 @@
 - [parallax.js](https://github.com/hahnzhu/parallax.js)
 - [H5FullscreenPage](https://github.com/lvming6816077/H5FullscreenPage)
 - [fullpage](https://github.com/powy1993/fullpage)
+- [vue-fullpage](https://github.com/wendaosanshou/vue-fullpage)
 
 如果你知道其他第三方库，欢迎[反馈给我](https://github.com/yanhaijing/zepto.fullpage/issues/50)。
 
