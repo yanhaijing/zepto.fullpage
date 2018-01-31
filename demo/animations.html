@@ -13,16 +13,24 @@
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">
-                <div class="js-animate" data-animate="bounce">bounce</div>
+                <div class="js-animate" data-animate="bounce" data-time="0">bounce</div>
+                <div class="js-animate" data-animate="bounce" data-time="1500">bounce</div>
+                <div class="js-animate" data-animate="bounce" data-time="3000">bounce</div>
             </div>
             <div class="page page2">
-                <div class="js-animate" data-animate="slideDown">slideDown</div>
+                <div class="js-animate" data-animate="slideDown" data-time="0">slideDown</div>
+                <div class="js-animate" data-animate="slideDown" data-time="1500">slideDown</div>
+                <div class="js-animate" data-animate="slideDown" data-time="3000">slideDown</div>
             </div>
             <div class="page page3">
-                <div class="js-animate" data-animate="slideLeft">slideLeft</div>
+                <div class="js-animate" data-animate="slideLeft" data-time="0">slideLeft</div>
+                <div class="js-animate" data-animate="slideLeft" data-time="1500">slideLeft</div>
+                <div class="js-animate" data-animate="slideLeft" data-time="3000">slideLeft</div>
             </div>
             <div class="page page4">
-                <div class="js-animate" data-animate="hatch">hatch</div>
+                <div class="js-animate" data-animate="hatch" data-time="0">hatch</div>
+                <div class="js-animate" data-animate="hatch" data-time="1500">hatch</div>
+                <div class="js-animate" data-animate="hatch" data-time="3000">hatch</div>
             </div>
         </div>
     </div>
@@ -39,10 +47,13 @@
             },
             afterChange: function (e) {
                 // 添加动画属性
-                $('.page').eq(e.cur).find('.js-animate')
-                    .each(function () {
-                        $(this).addClass($(this).data('animate')).show();
-                    });
+                $('.page').eq(e.cur).find('.js-animate').each(function () {
+                    var $this = $(this);
+                    var time = $this.data('time');
+                    setTimeout(function () {
+                        $this.addClass($this.data('animate')).show();
+                    }, time)
+                });
             }
         });
     </script>
