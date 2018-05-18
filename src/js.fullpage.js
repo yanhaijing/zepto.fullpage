@@ -19,6 +19,20 @@
         orientationchange: function(orientation) {}
     };
 
+    var passiveSupported = false;
+
+    try {
+      var options = Object.defineProperty({}, "passive", {
+        get: function() {
+          passiveSupported = true;
+        }
+      });
+
+      window.addEventListener("test", null, options);
+    } catch(err) {}
+
+    const passiveListener = passiveSupported ? { passive: false, capture: false } : false
+
     function touchmove(e) {
         e.preventDefault();
     }
@@ -163,10 +177,10 @@
         }, false);
     };
     Fullpage.prototype.holdTouch = function() {
-        document.addEventListener('touchmove', touchmove);
+        document.addEventListener('touchmove', touchmove, passiveListener);
     };
     Fullpage.prototype.unholdTouch = function() {
-        document.removeEventListener('touchmove', touchmove);
+        document.removeEventListener('touchmove', touchmove, passiveListener);
     };
     Fullpage.prototype.start = function() {
         this.status = 1;
