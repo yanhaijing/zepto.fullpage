@@ -31,7 +31,7 @@
       window.addEventListener("test", null, options);
     } catch(err) {}
 
-    const passiveListener = passiveSupported ? { passive: false, capture: false } : false
+    var passiveListener = passiveSupported ? { passive: false, capture: false } : false
 
     function touchmove(e) {
         e.preventDefault();
