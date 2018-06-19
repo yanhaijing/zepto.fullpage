@@ -1,0 +1,25 @@
+{
+  "name": "zepto.fullpage",
+  "version": "0.5.0",
+  "description": "专注于移动端的fullPage.js",
+  "main": "src/js.fullpage.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanhaijing/zepto.fullpage.git"
+  },
+  "keywords": [
+    "fullPage"
+  ],
+  "author": "yanhaijing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yanhaijing/zepto.fullpage/issues"
+  },
+  "homepage": "https://github.com/yanhaijing/zepto.fullpage#readme"
+}
