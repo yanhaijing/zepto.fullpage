@@ -26,7 +26,7 @@
     function touchmove(e) {
         e.preventDefault();
     }
-    
+
     function fix(cur, pagesLength, loop) {
         if (cur < 0) {
             return !!loop ? pagesLength - 1 : 0;
@@ -79,7 +79,9 @@
             this.height = this.$parent.height();
             this.$pages.height(this.height);
 
-            this.moveTo(this.curIndex < 0 ? this.o.start : this.curIndex);
+            this.moveTo(this.curIndex < 0 ? this.o.start : this.curIndex, 0);
+            this.$pages = this.$this.find(this.o.page).addClass('fullPage-page fullPage-dir-' + this.o.dir);
+            this.pagesLength = this.$pages.length;
         },
         initEvent: function() {
             var that = this;
@@ -105,7 +107,7 @@
                 var sub = that.o.dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width;
                 var der = (sub > that.o.der || sub < -that.o.der) ? sub > 0 ? -1 : 1 : 0;
 
-                that.moveTo(that.curIndex + der, true);
+                that.moveTo(that.curIndex + der, true, der);
             });
             if (that.o.drag) {
                 $this.on('touchmove', function(e) {
@@ -128,7 +130,7 @@
             }
 
             // 翻转屏幕提示
-            // ==============================             
+            // ==============================
             window.addEventListener('orientationchange', function() {
                 if (window.orientation === 180 || window.orientation === 0) {
                     that.o.orientationchange('portrait');
@@ -157,7 +159,7 @@
             this.status = 0;
             this.unholdTouch();
         },
-        moveTo: function(next, anim) {
+        moveTo: function(next, anim, der) {
             var that = this;
             var $this = this.$this;
             var cur = this.curIndex;
@@ -173,7 +175,8 @@
             if (next !== cur) {
                 var flag = this.o.beforeChange({
                     next: next,
-                    cur: cur
+                    cur: cur,
+                    der: der
                 });
 
                 // beforeChange 显示返回false 可阻止滚屏的发生
@@ -189,7 +192,8 @@
             if (next !== cur) {
                 this.o.change({
                     prev: cur,
-                    cur: next
+                    cur: next,
+                    der: der
                 });
             }
 
@@ -198,7 +202,8 @@
                 if (next !== cur) {
                     that.o.afterChange({
                         prev: cur,
-                        cur: next
+                        cur: next,
+                        der: der
                     });
                     that.$pages.removeClass('cur').eq(next).addClass('cur');
                 }
@@ -207,10 +212,10 @@
             return 0;
         },
         movePrev: function(anim) {
-            this.moveTo(this.curIndex - 1, anim);
+            this.moveTo(this.curIndex - 1, anim, -1);
         },
         moveNext: function(anim) {
-            this.moveTo(this.curIndex + 1, anim);
+            this.moveTo(this.curIndex + 1, anim, 1);
         },
         getCurIndex: function () {
             return this.curIndex;
