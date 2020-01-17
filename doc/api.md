@@ -66,6 +66,7 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 - start
 - stop
 - getCurIndex
+- destroy
 
 典型调用方法的例子如下：
 
@@ -110,3 +111,6 @@ fullPage支持无参数的调用，每个参数都会有默认值，如果想实
 获取当前位于第几屏的方法（第一屏的索引为0）。
 
 - return {Number} 当前位于第几屏
+
+### destroy
+主动销毁fullpage对象

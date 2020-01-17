@@ -214,6 +214,9 @@
         },
         getCurIndex: function () {
             return this.curIndex;
+        },
+        destroy: function () {
+            fullpage = null
         }
     });
 
@@ -225,7 +228,7 @@
     };
     $.fn.fullpage.version = '0.5.0';
     //暴露方法
-    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex', 'holdTouch', 'unholdTouch'], function(key, val) {
+    $.each(['update', 'moveTo', 'moveNext', 'movePrev', 'start', 'stop', 'getCurIndex', 'holdTouch', 'unholdTouch', 'destroy'], function(key, val) {
         $.fn.fullpage[val] = function() {
             if (!fullpage) {
                 return 0;
